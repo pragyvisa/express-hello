@@ -9,3 +9,7 @@ RUN apt-get update \
  && mv node* /opt/node
 RUN mkdir /app
 ADD app.js package.json package-lock.json /app/
+ENV PATH="/opt/node/bin:${PATH}"
+RUN cd /app && npm install
+EXPOSE 3000
+CMD /bin/bash -c "cd /app && node app.js"
